@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.1"> </script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@1.0.0"> </script>
+  <img id="img" width="200" src="./imgs/flower2.jpeg"></img>
+  <div id="result"></div>
+  <script>
+    const img = document.getElementById('img');
+    mobilenet.load().then(model => {
+      model.classify(img, 5).then(predictions => {
+        console.log('Predictions: ');
+        console.log(predictions);
+        document.querySelector('#result').innerHTML = `${JSON.stringify(predictions)}`;
+      });
+    });
+  </script>
+</body>
+</html>
